@@ -22,11 +22,12 @@ public interface ApiService {
 
     String pagination = "?page=1&limit=40";
 
+
     @Headers({TRAKT_CONTENT_TYPE, TRAKT_API_KEY, TRAKT_API_VERSION})
     @GET("/movies/popular" + pagination)
     void getPopular(@Query("extended") String extended, Callback<List<ApiResponse>> callback);
 
     @Headers({TRAKT_CONTENT_TYPE, TRAKT_API_KEY, TRAKT_API_VERSION})
-    @GET("PUT_URL_HERE") // unfinished url, go to http://docs.trakt.apiary.io/ and find the trending-url
+    @GET("/movies/trending") // unfinished url, go to http://docs.trakt.apiary.io/ and find the trending-url
     void getTrending(@Query("extended") String extended, Callback<List<RootApiResponse>> callback);
 }
