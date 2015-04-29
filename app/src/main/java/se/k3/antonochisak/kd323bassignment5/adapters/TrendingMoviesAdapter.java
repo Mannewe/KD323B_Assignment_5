@@ -15,7 +15,7 @@ public class TrendingMoviesAdapter extends BaseAdapter{
     ArrayList<Movie> mMovies;
     LayoutInflater mLayoutInflater;
 
-    //kekek
+    //kekekek
 
 
     public TrendingMoviesAdapter(ArrayList<Movie> mMovies) {
