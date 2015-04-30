@@ -43,6 +43,7 @@ import static se.k3.antonochisak.kd323bassignment5.helpers.StaticHelpers.FIREBAS
 /**
  * Created by Manne on 2015-04-27.
  */
+
 public class MyFragment extends MoviesFragment
         implements Callback <List<RootApiResponse>>, ListView.OnItemClickListener {
 
@@ -57,6 +58,7 @@ public class MyFragment extends MoviesFragment
 
     Firebase mFireBase;
     Firebase mRef;
+    String test;
 
     String mCurrentClickedMovie = "";
 
