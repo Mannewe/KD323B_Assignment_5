@@ -5,25 +5,32 @@
     >
 
         <ImageView
-            android:layout_width="67dp"
-            android:layout_height="100dp"
+            android:layout_width="133dp"
+            android:layout_height="200dp"
             android:id="@+id/my_poster"/>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="0dp"
+        android:layout_marginTop="-150dp"
+        android:layout_marginLeft="150dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/text_year"/>
+            android:id="@+id/text_title"
+            android:textSize="@dimen/title_size" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/text_title"/>
+            android:id="@+id/text_year"
+            android:textSize="@dimen/year_size"
+            android:textIsSelectable="false" />
+
+
 
 
     </LinearLayout>
