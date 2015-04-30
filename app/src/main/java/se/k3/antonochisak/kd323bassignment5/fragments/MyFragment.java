@@ -58,7 +58,7 @@ public class MyFragment extends MoviesFragment
 
     Firebase mFireBase;
     Firebase mRef;
-    String test;
+    String tes;
 
     String mCurrentClickedMovie = "";
 
