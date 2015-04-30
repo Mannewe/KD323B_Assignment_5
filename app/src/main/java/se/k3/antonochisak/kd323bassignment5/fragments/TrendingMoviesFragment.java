@@ -4,12 +4,10 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -30,9 +28,8 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import se.k3.antonochisak.kd323bassignment5.R;
-import se.k3.antonochisak.kd323bassignment5.adapters.PopularMoviesAdapter;
+import se.k3.antonochisak.kd323bassignment5.adapters.TrendingMoviesAdapter;
 import se.k3.antonochisak.kd323bassignment5.api.RestClient;
-import se.k3.antonochisak.kd323bassignment5.api.model.ApiResponse;
 import se.k3.antonochisak.kd323bassignment5.api.model.RootApiResponse;
 import se.k3.antonochisak.kd323bassignment5.models.movie.Movie;
 
@@ -43,7 +40,7 @@ import static se.k3.antonochisak.kd323bassignment5.helpers.StaticHelpers.FIREBAS
  * Created by Hans on 2015-04-29.
  */
 public class TrendingMoviesFragment extends Fragment
-        implements Callback<List<RootApiResponse>>, GridView.OnItemClickListener {
+        implements Callback<List<RootApiResponse>>, AdapterView.OnItemClickListener {
 
     // List of movies
     ArrayList<Movie> mMovies;
@@ -60,10 +57,10 @@ public class TrendingMoviesFragment extends Fragment
     CountDownTimer mVoteTimer;
     boolean mIsVoteTimerRunning = false;
 
-    PopularMoviesAdapter mAdapter;
+    TrendingMoviesAdapter mAdapter;
 
-    @InjectView(R.id.gridView)
-    GridView mMoviesGrid;
+    @InjectView(R.id.trendingListView)
+    ListView mMoviesList;
 
     @InjectView(R.id.progress_bar)
     ProgressBar mProgressBar;
@@ -82,16 +79,18 @@ public class TrendingMoviesFragment extends Fragment
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_popular_movies, container, false);
+        View view = inflater.inflate(R.layout.fragment_trending_movies, container, false);
         // Inject views
         ButterKnife.inject(this, view);
 
         // Create adapter
-        mAdapter = new PopularMoviesAdapter(mMovies, getActivity().getLayoutInflater());
-        mMoviesGrid.setAdapter(mAdapter);
+        mAdapter = new TrendingMoviesAdapter(mMovies, getActivity().getLayoutInflater());
+        mMoviesList.setAdapter(mAdapter);
 
         // listener= GridView.OnItemClickListener
-        mMoviesGrid.setOnItemClickListener(this);
+        mMoviesList.setOnItemClickListener(this);
+
+
         return view;
     }
 
@@ -108,9 +107,9 @@ public class TrendingMoviesFragment extends Fragment
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         if (!mIsVoteTimerRunning) {
-            voteOnMovie(i);
+            voteOnMovie(position);
             mVoteTimer.start();
             mIsVoteTimerRunning = true;
         }
