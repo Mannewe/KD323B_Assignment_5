@@ -55,6 +55,7 @@ public class MyFragment extends MoviesFragment
     boolean mIsVoteTimerRunning = false;
 
     RestClient mRestClient;
+    //hej
 
     Firebase mFireBase;
     Firebase mRef;
